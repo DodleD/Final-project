@@ -1,6 +1,7 @@
 package com.psvm.cs.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class CsController {
 	
 	//list.cs
 	
-	@RequestMapping("list.cs")
+	@RequestMapping("list.cs")//게시글 목록 띄우기
 	public String selectListCs(@RequestParam(value="cpage", defaultValue="1") int currentPage, @RequestParam(value="category", defaultValue="0") int boardLevel, Model model) {
 		
 		int boardCount = csService.selectListCount(boardLevel);
@@ -33,11 +34,60 @@ public class CsController {
 		model.addAttribute("boardLevel", boardLevel);
 		return "cs/CsList";
 	}
-
-	@RequestMapping("detail.cs")
-	public String selectBoard(int boardNo, @RequestParam(value="cpage", defaultValue="1") int currentPage, @RequestParam(value="category", defaultValue="0" int boardLevel, @RequestParam(value="condition", defaultValue="title") String condition, @RequestParam(value="keyword", defaultValue="") String keyword, Model model) {
+	
+	//게시글 목록 띄우기
+	@RequestMapping("searchlist.cs")
+	public String searchList(@RequestParam(value="cpage", defaultValue="1") int currentPage, @RequestParam(value="category", defaultValue="0") int boardLevel, @RequestParam(value="condition", defaultValue="title") String condition, @RequestParam(value="keyword", defaultValue="") String keyword, Model model) {
 		
-		PageInfo pi = new PageInfo();
+		HashMap<String, String>map = new HashMap<>();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		map.put("boardLevel", Integer.toString(boardLevel));
+		
+		int boardCount = csService.searchListCount(map);
+		PageInfo pi = Pagination.getPageInfo(boardCount, currentPage, 10, 10);
+		ArrayList<Cs> list = csService.searchList(pi, map);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("pi", pi);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("condition", condition);
+		model.addAttribute("boardLevel", boardLevel);
+		return "cs/CsSearchList";
 	}
+	
+//	@RequestMapping("detail.cs")//게시글 내용 띄우기
+//	public String selectBoard(int boardNo, @RequestParam(value="cpage", defaultValue="1") int currentPage, @RequestParam(value="category", defaultValue="0") int boardLevel, @RequestParam(value="condition", defaultValue="title") String condition, @RequestParam(value="keyword", defaultValue="") String keyword, Model model) {
+//		
+//		PageInfo pi = new PageInfo();
+//		ArrayList<Cs> list = new ArrayList<Cs>();
+//		
+//		if (keyword.isEmpty()) {
+//			int boardCount = csService.selectListCount(boardLevel);
+//			pi = Pagination.getPageInfo(boardCount, currentPage, 10, 10);
+//			list = csService.selectList(pi, boardLevel);
+//		}else {
+//			HashMap<String, String>map = new HashMap<>();
+//			map.put("condition", condition);
+//			map.put("keyword", keyword);
+//			map.put("boardLevel", Integer.toString(boardLevel));
+//			
+//			int boardCount = csService.searchListCount(map);
+//			pi = Pagination.getPageInfo(boardCount, currentPage, 10, 10);
+//			list = csService.searchList(pi, map);
+//		}
+//		model.addAttribute("list", list);
+//		model.addAttribute("pi", pi);
+//		model.addAttribute("keyword", keyword);
+//		model.addAttribute("condition", condition);
+//		model.addAttribute("boardLevel", boardLevel);
+//		
+//		int result = csService.increaseCount(boardNo);
+//		
+//		Cs c = csService.selectBoard(boardNo);
+//		model.addAttribute("c", c);
+//		
+//		return "cs/CsDetail";
+//	}
 	
 }

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
@@ -19,6 +22,7 @@
   
 <link rel="stylesheet" href="../../resources/css/csCSS/CsPersnal.css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/csJS/CsPersnal.js"></script>
 </head>
 <body>
     <div class="wrap">
@@ -30,12 +34,30 @@
             <div id="com-nav" >
                 <ul>
                     <li>
-                        <button class="com-nav-0" onclick="boCategory(0)"  style="border-radius: 22.5px;">
-                        
-                        자주묻는 질문</button></li>
-                        
-                    <li><button class="com-nav-10" onclick="boCategory(1)" value="1" style="border-radius: 22.5px;">1:1 문의</button></li>
-                    <li><button class="com-nav-20" onclick="boCategory(2)" value="2"style="border-radius: 22.5px;">신고센터</button></li>
+                        <button class="com-nav-0" onclick="boCategory(0)"  style="border-radius: 20px;">
+                            <img src="${pageContext.request.contextPath}/resources/image/iconQnA.png" style="width: 40px; height: 40px; position: relative; right: 12px; top: -3px;" alt="물음표 아이콘"> 
+                                <div style="width: 150px;">
+                                자주묻는 질문
+                                </div>
+                            
+                        </button>
+                    </li>
+                            
+                    <li><button class="com-nav-10" onclick="boCategory(1)" value="1" style="border-radius: 20px;">
+                            <img src="${pageContext.request.contextPath}/resources/image/icon_onetoone.png" style="width: 40px; height: 40px; position: relative; right: 12px; top: -3px;" alt="1:1">
+                            <div style="width: 150px;">
+                                1:1 문의
+                            </div>
+                        </button>
+                    </li>
+                        <!-- icon_onetoone.png 사용 -->
+                    <li><button class="com-nav-20" onclick="boCategory(2)" value="2"style="border-radius: 20px;">
+                            <img src="${pageContext.request.contextPath}/resources/image/icon_report.png" style="width: 40px; height: 40px; position: relative; right: 12px; top: -3px;" alt="신고센터">
+                            <div style="width: 150px;">
+                                신고센터
+                            </div>
+                        </button>
+                    </li>
                    
                 </ul>
             </div>

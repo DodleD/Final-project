@@ -49,7 +49,7 @@ public class CsDao {
 	@SuppressWarnings("unchecked")
 	public ArrayList<Reply> selectReply(SqlSessionTemplate sqlSession, int bno){
 		return (ArrayList)sqlSession.selectList("csMapper.selectReply", bno);
-		1
+		
 	}
 	
 }

@@ -23,6 +23,12 @@ public class CsServiceImpl implements CsService {
 	
 	@Autowired
 	private CsDao csDao;
+	
+	@Override
+	public int selectListCount(int boardLevel) {
+		// TODO Auto-generated method stub
+		return csDao.selectListCount(sqlSession, boardLevel);
+	}
 
 	@Override
 	public ArrayList<Cs> selectList(PageInfo pi, int boardLevel) {
@@ -45,12 +51,6 @@ public class CsServiceImpl implements CsService {
 	@Override
 	public int increaseCount(int boardNo) {
 		return csDao.increaseCount(sqlSession, boardNo);
-	}
-	
-	@Override
-	public int selectListCount(int boardLevel) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

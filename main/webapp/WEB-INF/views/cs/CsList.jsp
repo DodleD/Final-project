@@ -256,6 +256,7 @@
                 </div>
             </div>
             <div class="com-bottom2">
+                
                 <div id="pagination-div">
                     <ul class="pagination">
                         <c:choose>

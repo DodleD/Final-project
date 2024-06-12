@@ -18,7 +18,7 @@ public class CsDao {
 
 	
 	public int selectListCount(SqlSessionTemplate sqlSession, int boardLevel) {
-		return sqlSession.selectOne("csMapper.selectCs", boardLevel);
+		return sqlSession.selectOne("csMapper.selectListCount", boardLevel);
 	}
 	
 	public ArrayList<Cs> selectList(SqlSessionTemplate sqlSession, PageInfo pi, int boardLevel) {

@@ -13,18 +13,22 @@ import com.psvm.cs.vo.Cs;
 public interface CsService {
 	
 //	int selectListCount(HashMap<String, String> map);
+	//게시글 총 갯수 가져오기
+	int selectListCount(int boardLevel);
 	
+	//게시글 리스트 조회
 	ArrayList<Cs> selectList(PageInfo pi, int boardLevel);
 
 	//게시글 검색 결과 수 가져오기
 	int searchListCount(HashMap<String, String> map);
 	
+	//게시글 검색 결과 조회
 	ArrayList<Cs> searchList(PageInfo pi, HashMap<String, String> map);
 
-	int selectListCount(int boardLevel);
-		
+	//게시글 조회수 증가	
 	int increaseCount(int boardNo);
 //	
+	//게시글정보 조회
 	Cs selectBoard (int boardNo);
 	
 	//댓글목록 조회

@@ -43,11 +43,12 @@ public class CsController {
 	
 	@RequestMapping("list.cs")//게시글 목록 띄우기
 	public String selectListCs(@RequestParam(value="cpage", defaultValue="1") int currentPage, @RequestParam(value="category", defaultValue="0") int boardLevel, Model model) {
-		
+
 		int boardCount = csService.selectListCount(boardLevel);
+		System.out.println(boardCount);
 		PageInfo pi = Pagination.getPageInfo(boardCount, currentPage, 10, 10);
 		ArrayList<Cs> list = csService.selectList(pi, boardLevel);
-		
+		System.out.println(pi);
 		model.addAttribute("list", list);
 		model.addAttribute("pi", pi);
 		model.addAttribute("boardLevel", boardLevel);

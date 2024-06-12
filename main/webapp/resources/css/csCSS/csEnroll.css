@@ -1,1 +1,91 @@
 @charset "UTF-8";
+
+body{
+    background-color: #E0F1FF;
+    position: relative;
+}
+#com-nav {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    /* width: 225px;   
+    height: 45px; */
+    margin-bottom: 40px; 
+    padding: 10px;
+}
+#community-normal{
+    min-height: 100%;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+}
+#community-normal #com-head{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+#com-enroll-top, #com-enroll-middle{
+    width: 900px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#com-enroll-top div, #com-enroll-middle div{
+    width: 120px;
+    height: 40px;
+    background-color: #0089FF;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+    border-radius: 15px 0 0 15px;
+}
+#com-enroll-top select, #com-enroll-middle input{
+    height: 40px;
+    border: 1px solid #AFA8A8;
+    border-left: none;
+    border-radius: 0 15px 15px 0;
+    padding-left: 5px;
+}
+#com-enroll-top select{
+    width: 120px;
+    outline: 0;
+}
+#com-enroll-middle input{
+    width: 780px;
+    outline: 0;
+}
+
+#com-enroll-content{
+    width: 900px;
+}
+#com-enroll-bottom{
+    width: 900px;
+    text-align: right;
+    margin-bottom: 40px;
+}
+#com-enroll-bottom button{
+    margin-left: 10px;
+}
+#com-blue-button, #com-grey-button {
+    border: 0;
+    width: 150px;
+    height: 40px;
+    color: white;
+    margin-right: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+#com-blue-button{
+    background: #0089FF;
+}
+#com-grey-button{
+    background: #AFA8A8;
+}
+.modal-title{
+    text-align: start;
+}

@@ -21,10 +21,10 @@
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/commonsCSS/reset.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/csCSS/csDetail.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/csCSS/csList.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/csCSS/CsDetail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/csCSS/CsList.css">
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/csJS/csDetail.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/csJS/CsDetail.js"></script>
 
 </head>
 <body onload="callReply(`${c.boardNo}`, `${pageContext.request.contextPath}/resources/image/Cancel.png`, `${c.boardLevel}`); callThumbup(`${c.boardNo}`, `${loginUser.userNo}`); categorySelectedsc(`${c.boardLevel}`); conditionSelected(`${condition}`);">
@@ -72,7 +72,7 @@
         <%@ include file="../commons/header.jsp" %>
         <main id="community-normal">
             <div id="com-head">
-                커뮤니티
+                <!-- 커뮤니티 -->
             </div>
             <div id="com-nav">
                 <li>

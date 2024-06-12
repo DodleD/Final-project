@@ -174,131 +174,131 @@ public class CsController {
 	}
 	
 	//게시글 추가하기
-		@PostMapping("insert.cs")
-		public ModelAndView insertBoard(Cs c, HttpSession session, ModelAndView mv) {
+	@PostMapping("insert.cs")
+	public ModelAndView insertBoard(Cs c, HttpSession session, ModelAndView mv) {
+		
+		int result = csService.insertBoard(c);
+		
+		if (result > 0) { //성공 => list페이지로 이동
+			session.setAttribute("successMessage", "게시글이 작성되었습니다!");
+			mv.setViewName("redirect:list.cs?category="+ c.getBoardLevel() +"&cpage=1");
+		} else { //실패 => 에러페이지
+			mv.addObject("errorMessage", "오류가 발생했습니다.");
+			mv.setViewName("commons/error"); ;
+		}
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("thumbUpCount.cs")//추천 수 확인
+	public int ajaxThumbUpCount(int boardNo) {
+		System.out.println(boardNo);
+		return csService.thumbUpCount(boardNo);
+	}
+	
+	@ResponseBody
+	@RequestMapping("thumbUpCheck.cs")//추천 버튼 클릭 여부 확인
+	public int ajaxthumbUpCheck(ThumbUp t) {
+		return csService.thumbUpCheck(t);
+	}
+	
+	@ResponseBody
+	@RequestMapping("thumbUpClick.cs")//추천하기
+	public String ajaxthumbUpClick(ThumbUp t) {
+		//성공했을 때는 success, 실패했을 때 fail
+		return csService.thumbUpClick(t) > 0 ? "success" : "fail";
+	}
+	
+	//ajax로 들어오는 파일 업로드 요청 처리
+	//파일목록을 저장한 후 저장된 파일명목록을 반환
+	@PostMapping("upload.cs")
+	@ResponseBody
+	public String upload(List<MultipartFile> fileList, HttpSession session) {
+		
+		List<String> changeNameList = new ArrayList<String>();
+		
+		for (MultipartFile f : fileList) {
+			String changeName = saveFile1(f, session, "/resources/image/");
 			
-			int result = csService.insertBoard(c);
-			
-			if (result > 0) { //성공 => list페이지로 이동
-				session.setAttribute("successMessage", "게시글이 작성되었습니다!");
-				mv.setViewName("redirect:list.cs?category="+ c.getBoardLevel() +"&cpage=1");
-			} else { //실패 => 에러페이지
-				mv.addObject("errorMessage", "오류가 발생했습니다.");
-				mv.setViewName("commons/error"); ;
-			}
-			return mv;
+			changeNameList.add("/resources/image/" + changeName);
 		}
 		
-		@ResponseBody
-		@RequestMapping("thumbUpCount.cs")//추천 수 확인
-		public int ajaxThumbUpCount(int boardNo) {
-			System.out.println(boardNo);
-			return csService.thumbUpCount(boardNo);
+		return new Gson().toJson(changeNameList);
+	}
+	
+	public String saveFile1(MultipartFile upfile, HttpSession session, String path) {
+		//파일명 수정 후 서버에 업로드하기("imgFile.jpg => 202404231004305488.jpg")
+		String originName = upfile.getOriginalFilename();
+		
+		//년월일시분초 
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		
+		//5자리 랜덤값
+		int ranNum = (int)(Math.random() * 90000) + 10000;
+		
+		//확장자
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		//수정된 첨부파일명
+		String changeName = currentTime + ranNum + ext;
+		
+		//첨부파일을 저장할 폴더의 물리적 경로(session)
+		String savePath = session.getServletContext().getRealPath(path);
+		
+		try {
+			upfile.transferTo(new File(savePath + changeName));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
-		@ResponseBody
-		@RequestMapping("thumbUpCheck.cs")//추천 버튼 클릭 여부 확인
-		public int ajaxthumbUpCheck(ThumbUp t) {
-			return csService.thumbUpCheck(t);
-		}
-		
-		@ResponseBody
-		@RequestMapping("thumbUpClick.cs")//추천하기
-		public String ajaxthumbUpClick(ThumbUp t) {
-			//성공했을 때는 success, 실패했을 때 fail
-			return csService.thumbUpClick(t) > 0 ? "success" : "fail";
-		}
-		
-		//ajax로 들어오는 파일 업로드 요청 처리
-		//파일목록을 저장한 후 저장된 파일명목록을 반환
-		@PostMapping("upload.cs")
-		@ResponseBody
-		public String upload(List<MultipartFile> fileList, HttpSession session) {
-			
-			List<String> changeNameList = new ArrayList<String>();
-			
-			for (MultipartFile f : fileList) {
-				String changeName = saveFile1(f, session, "/resources/image/");
-				
-				changeNameList.add("/resources/image/" + changeName);
-			}
-			
-			return new Gson().toJson(changeNameList);
-		}
-		
-		public String saveFile1(MultipartFile upfile, HttpSession session, String path) {
-			//파일명 수정 후 서버에 업로드하기("imgFile.jpg => 202404231004305488.jpg")
-			String originName = upfile.getOriginalFilename();
-			
-			//년월일시분초 
-			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-			
-			//5자리 랜덤값
-			int ranNum = (int)(Math.random() * 90000) + 10000;
-			
-			//확장자
-			String ext = originName.substring(originName.lastIndexOf("."));
-			
-			//수정된 첨부파일명
-			String changeName = currentTime + ranNum + ext;
-			
-			//첨부파일을 저장할 폴더의 물리적 경로(session)
-			String savePath = session.getServletContext().getRealPath(path);
-			
-			try {
-				upfile.transferTo(new File(savePath + changeName));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			return changeName;
-		}
-		
-		@RequestMapping("updateForm.cs")
-		public String updateForm(int boardNo, Model model) {
-			model.addAttribute("c", csService.selectBoard(boardNo));
+		return changeName;
+	}
+	
+	@RequestMapping("updateForm.cs")
+	public String updateForm(int boardNo, Model model) {
+		model.addAttribute("c", csService.selectBoard(boardNo));
 
-			return "cs/CsEdit";
+		return "cs/CsEdit";
+	}
+	
+	@RequestMapping("update.cs")
+	public ModelAndView updateBoard(Cs c, HttpSession session, ModelAndView mv) {
+
+		int result = csService.updateBoard(c);
+
+		if (result > 0) { //성공 => list페이지로 이동
+			session.setAttribute("successMessage", "게시글이 수정되었습니다!");
+			mv.setViewName("redirect:detail.cs?category=" + c.getBoardLevel() + "&cpage=1&boardNo=" + c.getBoardNo());
+		} else { //실패 => 에러페이지
+			mv.addObject("errorMessage", "오류가 발생했습니다.");
+			mv.setViewName("redirect:updateForm.cs?boardNo=" + c.getBoardNo());
 		}
 		
-		@RequestMapping("update.cs")
-		public ModelAndView updateBoard(Cs c, HttpSession session, ModelAndView mv) {
+		return mv;
+	}
+	
+	@RequestMapping("delete.cs")
+	public ModelAndView deleteBoard(int boardLevel, int boardNo, HttpSession session, ModelAndView mv) {
+		
+		int result = csService.deleteBoard(boardNo);
 
-			int result = csService.updateBoard(c);
-
-			if (result > 0) { //성공 => list페이지로 이동
-				session.setAttribute("successMessage", "게시글이 수정되었습니다!");
-				mv.setViewName("redirect:detail.cs?category=" + c.getBoardLevel() + "&cpage=1&boardNo=" + c.getBoardNo());
-			} else { //실패 => 에러페이지
-				mv.addObject("errorMessage", "오류가 발생했습니다.");
-				mv.setViewName("redirect:updateForm.cs?boardNo=" + c.getBoardNo());
-			}
-			
-			return mv;
+		if (result > 0) { //성공 => list페이지로 이동
+			session.setAttribute("infoMessage", "게시글이 삭제되었습니다.");
+			mv.setViewName("redirect:list.cs?category="+ boardLevel +"&cpage=1");
+		} else { //실패 => 에러페이지
+			mv.addObject("errorMessage", "오류가 발생했습니다.");
+			mv.setViewName("redirect:detail.cs?category=" + boardLevel + "&cpage=1&boardNo=" + boardNo);
 		}
 		
-		@RequestMapping("delete.cs")
-		public ModelAndView deleteBoard(int boardLevel, int boardNo, HttpSession session, ModelAndView mv) {
-			
-			int result = csService.deleteBoard(boardNo);
-
-			if (result > 0) { //성공 => list페이지로 이동
-				session.setAttribute("infoMessage", "게시글이 삭제되었습니다.");
-				mv.setViewName("redirect:list.cs?category="+ boardLevel +"&cpage=1");
-			} else { //실패 => 에러페이지
-				mv.addObject("errorMessage", "오류가 발생했습니다.");
-				mv.setViewName("redirect:detail.cs?category=" + boardLevel + "&cpage=1&boardNo=" + boardNo);
-			}
-			
-			return mv;
-		}
-		
-		@ResponseBody
-		@RequestMapping(value="topList.cs", produces="application/json; charset=UTF-8")
-		public String ajaxTopBoardList() {
-			return new Gson().toJson(csService.selectTopBoardList());
-		}
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="topList.cs", produces="application/json; charset=UTF-8")
+	public String ajaxTopBoardList() {
+		return new Gson().toJson(csService.selectTopBoardList());
+	}
 		
 }

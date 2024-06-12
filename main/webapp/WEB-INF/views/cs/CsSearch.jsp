@@ -44,7 +44,7 @@
         <%@ include file="../commons/header.jsp" %>
         <main id="community-normal">
             <div id="com-head">
-                커뮤니티
+                <!-- 커뮤니티 -->
             </div>
             <div id="com-nav">
                     <ul>

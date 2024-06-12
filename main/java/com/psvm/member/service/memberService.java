@@ -13,9 +13,6 @@ public interface MemberService {
 	//회원가입
 	int signupMember(Member m);
 	
-	//회원정보 수정
-	int updateMember(Member m);
-	
-	//회원 탈퇴
-	int deleteMember(String userId);
+	//카카오 로그인
+	Member kakaoLogin(String email);
 }

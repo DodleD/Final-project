@@ -19,7 +19,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/memberCSS/login.css">
     <script src="${pageContext.request.contextPath}/resources/js/memberJS/login.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-    
+
+    <!-- naver login -->
+    <script src="${pageContext.request.contextPath}/resources/js/memberJS/NaverLogin.js"></script>
+
+    <!-- kakao login -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/memberJS/KakaoLogin.js"></script>
+
    
 </head>
 <body>
@@ -50,10 +57,13 @@
             <a href="" id="login-help-find">아이디 · 비밀번호 찾기</a>
             <a href="signUpForm.me" id="login-help-signup">회원가입</a>
         </div>
-        <div id="login-easy">
-            <p>간편 로그인/회원가입</p>
-            <button><img src="${pageContext.request.contextPath}/resources/image/kakao_login_large.png" alt="카카오 로그인" ></button>
-            <button><img src="${pageContext.request.contextPath}/resources/image/btnG_roundicon.png" alt="네이버 로그인"></button>
+        <div id="login-naver">
+            <p>네이버 아이디로 로그인/회원가입</p>
+            <button onclick="NaverLogin()"><img src="${pageContext.request.contextPath}/resources/image/btnG_rectangle.png" alt="네이버 로그인"></button>
+        </div>
+        <div id="login-kakao">
+            <p>카카오 아이디로 로그인(기존의 회원만 가능)</p>
+            <button onclick="KakaoLogin()"><img src="${pageContext.request.contextPath}/resources/image/kakao_login_medium_narrow.png" alt="카카오 로그인" ></button>
         </div>
     </div>
 </body>

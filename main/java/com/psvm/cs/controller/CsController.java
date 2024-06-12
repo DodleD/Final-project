@@ -74,6 +74,8 @@ public class CsController {
 		model.addAttribute("boardLevel", boardLevel);
 		return "cs/CsSearchList";
 	}
+
+
 	
 	@RequestMapping("detail.cs")//게시글 내용 띄우기
 	public String selectBoard(int boardNo, @RequestParam(value="cpage", defaultValue="1") int currentPage, @RequestParam(value="category", defaultValue="0") int boardLevel, @RequestParam(value="condition", defaultValue="title") String condition, @RequestParam(value="keyword", defaultValue="") String keyword, Model model) {

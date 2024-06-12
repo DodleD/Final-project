@@ -27,9 +27,10 @@
  		<typeAlias type="com.psvm.store.vo.StoreInfo" alias="StoreInfo"/>
  		<typeAlias type="com.psvm.fishInfo.vo.Fish" alias="Fish"/>
  		<typeAlias type="com.psvm.myPage.vo.Inquiry" alias="Inquiry"/>
- 		<typeAlias type="com.psvm.manager.vo.SellerNewApplication" alias="SellerNewApplication"/>
+ 		<typeAlias type="com.psvm.manager.vo.Seller" alias="Seller"/>
+ 		<typeAlias type="com.psvm.curation.vo.Curation" alias="Curation"/>
  		<typeAlias type="com.psvm.cs.vo.Cs" alias="Cs"/>
- 		
+ 		<typeAlias type="com.psvm.seller.dto.StoreMainDTO" alias="StoreMainDTO"/>
  	</typeAliases>
  	
  	<!-- 
@@ -46,6 +47,7 @@
  		<mapper resource="/mappers/seller-mapper.xml"/>
  		<mapper resource="/mappers/fish-mapper.xml"/>
  		<mapper resource="/mappers/manager-mapper.xml"/>
+ 		<mapper resource="/mappers/curation-mapper.xml"/>
  		<mapper resource="/mappers/store-mapper.xml"/>
  		<mapper resource="/mappers/cs-mapper.xml"/>
  	</mappers>

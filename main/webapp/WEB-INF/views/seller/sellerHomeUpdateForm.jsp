@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sellerCSS/sellerHomeForm.css">
 
 <!-- JS -->
-<script src="${pageContext.request.contextPath}/resources/js/sellerJS/addCategory.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/sellerJS/sellerHomeUpdate.js"></script>
 
 </head>
 <body>
@@ -33,19 +33,18 @@
         <section>
             <h1>스토어 관리 &gt; 판매자 홈 등록</h1>
 
-            <c:if test="${not sessionScope.SellerHomeRegistered}">
             <form id="enrollForm"  action="update.srh" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="userNo" value="${loginUser.userNo}">
+                
                 <div>
                     <h4>스토어 소개</h4>
-                    <input id="store-introduce" type="text" name="sellerExplain" placeholder="스토어 소개 입력" style="width: 300px; padding: 5px;">
+                    <input id="store-introduce" type="text" name="sellerExplain" placeholder="스토어 소개 입력" value="${sp.sellerExplain}" style="width: 300px; padding: 5px;">
                 </div>
                 <div>
                     <h4>대표 이미지</h4>
                     <input type="file" name="storeHomeImage" id="storeHomeImage">
                 </div>
                 <div class="image-container">
-                    <img id="preview-image" src="getImage?id=1" alt="스토어 홈 이미지">
+                    <img id="preview-image" src="${sp.spChangeName}" alt="스토어 홈 이미지">
                 </div>
 
                 <div id="div-enroll-category">
@@ -60,14 +59,11 @@
                 </div>                
                 
                 <div class="form-actions">
-                    <button type="submit">등록하기</button>
+                    <button type="submit">등록</button>
                     <button type="reset">초기화</button>
                 </div>
             </form>
-        </c:if>
-        <c:if test="${sessionScope.SellerHomeRegistered}">
-            <p>등록이 완료되었습니다.</p>
-        </c:if>
+
         </section>
     </main>
 

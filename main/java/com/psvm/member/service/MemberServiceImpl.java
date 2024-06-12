@@ -32,12 +32,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public int updateMember(Member m) {
-		return memberDao.updateMember(sqlSession, m);
-	}
-	
-	@Override
-	public int deleteMember(String userId) {
-		return memberDao.deleteMember(sqlSession, userId);
+	public Member kakaoLogin(String email) {
+		return memberDao.kakaoLogin(sqlSession, email);
 	}
 }

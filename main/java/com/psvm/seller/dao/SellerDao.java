@@ -1,6 +1,7 @@
 package com.psvm.seller.dao;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -117,6 +118,8 @@ public class SellerDao {
 	// 상품 옵션 불러오기
 	public List<ProductOption> selectOptions(SqlSessionTemplate sqlSession,int pno) {
 		
+		System.out.println((List)sqlSession.selectList("sellerMapper.selectOptions", pno));
+		
 		return (List)sqlSession.selectList("sellerMapper.selectOptions", pno);
 	}
 	
@@ -127,6 +130,12 @@ public class SellerDao {
 	}
 	
 	// 상품 정보 수정
+	
+	// 상품 삭제
+	public int deleteProduct(SqlSessionTemplate sqlSession, int pno) {
+		
+		return sqlSession.update("sellerMapper.deleteProduct",pno);
+	}
 	
 	// 인기 상품 불러오기
 	public List<StoreMainDTO> selectPopularList(SqlSessionTemplate sqlSession) {
@@ -151,6 +160,11 @@ public class SellerDao {
 		RowBounds rowBounds = new RowBounds(offset, size);
 		
 		return (List)sqlSession.selectList("sellerMapper.selectAllProduct", null, rowBounds);
+	}
+	
+	//알람 ajax
+	public ArrayList<String> getAlarmList(SqlSessionTemplate sqlSession, int userNo){
+		return (ArrayList)sqlSession.selectList("sellerMapper.getAlarmList", userNo);
 	}
 
 	

@@ -113,7 +113,7 @@ public class CsController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "rlist.cs", produces = "application/json; charset-UTF-8")
+	@RequestMapping(value = "rlist.cs", produces = "application/json; charset=UTF-8")
 	public String ajaxSelectReplyList(int bno) {
 		ArrayList<Reply> rlist = csService.selectReply(bno);
 		

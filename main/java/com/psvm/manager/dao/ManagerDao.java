@@ -1,7 +1,6 @@
 package com.psvm.manager.dao;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -142,5 +141,16 @@ public class ManagerDao {
 		
 	}
 	
+	// 탈퇴 회원 수 조회
+	public int customerOutCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("managerMapper.customerOutCount");
+	}
 	
+	// 탈퇴 회원 조회
+	public ArrayList<Member> customerOutList(SqlSessionTemplate sqlSession, PageInfo pi){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("managerMapper.customerOutList",rowBounds);
+	}
 }

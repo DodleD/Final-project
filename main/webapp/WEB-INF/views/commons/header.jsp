@@ -38,13 +38,6 @@
                             <a href="javascript:void(0)" onclick="getRecentURL()" >로그인</a>
                             <a href="signUpForm.me">회원가입</a>
                             
-                            <script>
-                                function getRecentURL(){
-                                    const recentLink = document.querySelector('#recentLink');
-                                    recentLink.value = (window.location.href);
-                                    recentLink.form.submit();
-                                }
-                            </script>
                         </c:when>
                         <c:otherwise>
                             <c:choose>
@@ -71,7 +64,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                             <div id="click-menu">
-                                                <a href="myPage.me?userNo=${loginUser.userNo}">마이페이지</a>
+                                                <a href="myPage.my?userNo=${loginUser.userNo}">마이페이지</a>
                                                 <a href="sellerConversionPage.my?userNo=${loginUser.userNo}">판매자 전환 신청</a>
                                                 <a href="logout.me">로그아웃</a>
                                             </div>
@@ -102,7 +95,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                             <div id="click-menu">
-                                                <a href="myPage.me?userNo=${loginUser.userNo}">마이페이지</a>
+                                                <a href="myPage.my?userNo=${loginUser.userNo}">마이페이지</a>
                                                 <a href="info.sr">판매자 페이지</a>
                                                 <a href="logout.me">로그아웃</a>
                                             </div>

@@ -88,7 +88,7 @@ public class CsController {
 			int boardCount = csService.selectListCount(boardLevel);
 			pi = Pagination.getPageInfo(boardCount, currentPage, 10, 10);
 			list = csService.selectList(pi, boardLevel);
-		}else {
+		} else {
 			HashMap<String, String>map = new HashMap<>();
 			map.put("condition", condition);
 			map.put("keyword", keyword);

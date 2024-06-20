@@ -1,5 +1,5 @@
 
-function communityInit(boardLevel, boardContents){
+function csInit(boardLevel, boardContents){
     $('#com-edit-content-p').summernote({
         placeholder: "게시글을 작성해주세요.",
         height: 400,

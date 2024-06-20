@@ -20,3 +20,15 @@ function conditionSelected(condition){
         opt.setAttribute("selected", true);
     }
 }
+
+function showsearch(boardNo){
+    document.querySelector(`#show-${boardNo}`).submit()
+}
+
+function prevpage(){
+    document.querySelector('#prevpage-link').submit();
+}
+
+function numpage(num){
+    document.querySelector(`#numpage-link-${num}`).submit();
+}

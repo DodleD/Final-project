@@ -28,32 +28,32 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/csJS/CsList.js"></script>
 
 </head>
-<body onload="categorySelected();">
+<body onload="init('CsList', `${pageContext.request.contextPath}`, {userNo : `${loginUser.userNo}`})">>
     <c:if test="${ not empty successMessage}">
+		<script>
+            var errorMessage = '${successMessage}';
+            if (errorMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Error!',
+                    html: errorMessage
+                });
+            }
+		</script>
+		<c:remove var="errorMessage" scope="session"/>
+	</c:if>
+    <c:if test="${ not empty infoMessage}">
 		<script>
             var successMessage = '${successMessage}';
             if (successMessage) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'success!',
+                    title: 'success',
                     html: successMessage
                 });
             }
 		</script>
 		<c:remove var="successMessage" scope="session"/>
-	</c:if>
-    <c:if test="${ not empty infoMessage}">
-		<script>
-            var infoMessage = '${infoMessage}';
-            if (infoMessage) {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Notice',
-                    html: infoMessage
-                });
-            }
-		</script>
-		<c:remove var="infoMessage" scope="session"/>
 	</c:if>
 
     <c:if test="${ not empty infoMessage}">

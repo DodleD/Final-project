@@ -27,7 +27,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/csJS/CsDetail.js"></script>
 
 </head>
-<body onload="callReply(`${c.boardNo}`, `${pageContext.request.contextPath}/resources/image/Cancel.png`, `${c.boardLevel}`); callThumbup(`${c.boardNo}`, `${loginUser.userNo}`); categorySelectedsc(`${c.boardLevel}`); conditionSelected(`${condition}`);">
+<body onload="init('CsDetail', `${pageContext.request.contextPath}`, {boardNo : `${c.boardNo}`, userNo : `${loginUser.userNo}`, boardLevel : `${c.boardLevel}`, condition : `${condition}`});">
     <c:if test="${ not empty errorMessage}">
 		<script>
 			var errorMessage = '${errorMessage}';

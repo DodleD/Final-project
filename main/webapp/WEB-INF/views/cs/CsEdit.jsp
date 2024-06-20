@@ -34,7 +34,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/csJS/CsEdit.js"></script>
     
 </head>
-<body onload='communityInit(`${c.boardLevel}`, `${c.boardContents}`)'>
+<body onload="init('CsEdit', `${pageContext.request.contextPath}`, {boardLevel : `${c.boardLevel}`,boardContents : `${c.boardContents}`})">
     <div id="wrap">
         <%@ include file="../commons/header.jsp" %>
         <main id="community-normal">

@@ -85,8 +85,9 @@ function addReply(Cancel, cBoardLevel, CboardNo){
     //userId
     //댓글내용
 
-    const boardNo = "${c.boardNo}";
-    const userNo = "${loginUser.userNo}";
+    const boardNo = boardNo;
+    const userNo = userNo;
+    
     const content = document.querySelector("#com-reply-insertbox").value;
 
 
@@ -95,9 +96,9 @@ function addReply(Cancel, cBoardLevel, CboardNo){
         userNo: userNo,
         replyContents: content
     }, function(res){
-        getReplyList({bno : "${c.boardNo}"}, function(result){
+        getReplyList({bno : boardNo}, function(result){
             setReplyCount(result.length);
-            drawTableList(result, document.querySelector("#com-reply tbody"), Cancel, cBoardLevel, CboardNo);
+            drawTableList(result, document.querySelector("#com-reply tbody"), Cancel, cBoardLevel, boardNo);
         })
         
     })
@@ -205,7 +206,7 @@ function checkThumbUp(ThumbUp, userNo, goodbutton){
                 if (result > 0){
                     console.log(goodbutton);
                     goodbutton.id = "com-detail-goodbuttonClicked";
-                    goodbutton.removeAttribute('onclick');
+                    goodbutton.setAttribute('onclick', `thumbUpOff(${userNo}, ${ThumbUp.boardNo})`);
                 }
             },
             error: function(item){
@@ -217,11 +218,11 @@ function checkThumbUp(ThumbUp, userNo, goodbutton){
 }
 
 //추천 버튼 클릭
-function thumbUpClick(userNo, boardNo){
+function thumbUpOn(userNo, boardNo){
     const goodbutton = document.querySelector('.goodbutton');
     goodbutton.id = "com-detail-goodbuttonClicked";
-    goodbutton.removeAttribute('onclick');
-    ajaxthumbUpClick({
+    goodbutton.setAttribute('onclick', `thumbUpOff(${userNo}, ${boardNo})`);
+    ajaxthumbUpOn({
         userNo : userNo,
         boardNo : boardNo
     }, function(res){
@@ -232,7 +233,7 @@ function thumbUpClick(userNo, boardNo){
     }
 )}
 
-function ajaxthumbUpClick(data, callback){
+function ajaxthumbUpOn(data, callback){
     $.ajax({
         url: 'thumbUpClick.cs',
         data : data,
@@ -246,7 +247,35 @@ function ajaxthumbUpClick(data, callback){
         }
     })
 }
+function thumbUpOff(userNo, boardNo){
+    const goodbutton = document.querySelector('.goodbutton');
+    goodbutton.id = "com-detail-goodbutton";
+    goodbutton.setAttribute('onclick', `thumbUpOn(${userNo}, ${boardNo})`);
+    ajaxthumbUpOff({
+        userNo : userNo,
+        boardNo : boardNo
+    }, function(res){
+        console.log(boardNo);
+        getThumbUpCount({boardNo : boardNo}, function(count){
+            setThumbUpCount(count)
+        })
+    }
+)}
 
+function ajaxthumbUpOff(data, callback){
+    $.ajax({
+        url: 'thumbUpOff.cs',
+        data : data,
+        success: function(res){
+            console.log("추천 취소 성공")
+            callback(res)
+        },
+        error: function(item){
+            console.log(item);
+            console.log("추천 취소 실패");
+        }
+    })
+}
 //게시글 열람 링크(list)
 function show(boardLevel, cpage, boardNo){
     location.href = "detail.cs?category=" + boardLevel + "&cpage=" + cpage + "&boardNo=" + boardNo;

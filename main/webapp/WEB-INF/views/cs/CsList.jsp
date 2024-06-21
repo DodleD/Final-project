@@ -48,7 +48,7 @@
             if (successMessage) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'success',
+                    title: 'success!',
                     html: successMessage
                 });
             }

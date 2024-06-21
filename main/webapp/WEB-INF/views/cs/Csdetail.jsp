@@ -27,7 +27,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/csJS/CsDetail.js"></script>
 
 </head>
-<body onload="init('CsDetail', `${pageContext.request.contextPath}`, {boardNo : `${c.boardNo}`, userNo : `${loginUser.userNo}`, boardLevel : `${c.boardLevel}`, condition : `${condition}`});">
+<body onload="init('CsDetail', `${pageContext.request.contextPath}`, {boardNo : `${c.boardNo}`, userNo : `${loginUser.userNo}`, boardLevel : `${c.boardLevel}`, condition : `${condition}`, nickname : `${loginUser.nickname}`});">
     <c:if test="${ not empty errorMessage}">
 		<script>
 			var errorMessage = '${errorMessage}';
@@ -150,7 +150,7 @@
                                     </th>
                                     <th colspan="2" style="vertical-align:middle; width: 180px !important;">
                                         <button id="com-reply-button" class="btn btn-secondary"
-                                        onclick="addReply('${pageContext.request.contextPath}/resources/image/Cancel.png', '${c.boardLevel}', '${c.boardNo}')">
+                                        onclick="addReply('${pageContext.request.contextPath}/resources/image/Cancel.png', '${c.boardLevel}', '${c.boardNo}', '${loginUser.userNo}', '${loginUser.nickname}')">
                                             등록하기
                                         </button>
                                     </th>

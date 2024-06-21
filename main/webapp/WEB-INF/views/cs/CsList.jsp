@@ -29,12 +29,12 @@
 
 </head>
 <body onload="init('CsList', `${pageContext.request.contextPath}`, {userNo : `${loginUser.userNo}`})">>
-    <c:if test="${ not empty successMessage}">
+    <c:if test="${ not empty errorMessage}">
 		<script>
-            var errorMessage = '${successMessage}';
+            var errorMessage = '${errorMessage}';
             if (errorMessage) {
                 Swal.fire({
-                    icon: 'success',
+                    icon: 'error',
                     title: 'Error!',
                     html: errorMessage
                 });

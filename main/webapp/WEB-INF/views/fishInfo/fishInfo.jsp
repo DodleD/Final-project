@@ -55,7 +55,7 @@
 
                <div id="fish-sub-explain">
                   <div>
-                     <p>물고기 데이터 260종</p>
+                     <p>물고기 데이터 260종 (예정)</p>
                   </div>
                   <div id="show-fish-category">
                      

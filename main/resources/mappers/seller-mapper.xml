@@ -742,6 +742,7 @@
 			   p_price,
 			   P_CHANGE_NAME
 		FROM product
+		WHERE P_STATUS = 'Y'
 		ORDER BY RANDOM()
 		LIMIT 5
 	</select>

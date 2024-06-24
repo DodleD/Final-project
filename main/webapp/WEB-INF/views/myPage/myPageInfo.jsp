@@ -116,8 +116,8 @@
                                 <tr>
                                     <th>비밀번호</th>
                                     <td>
-                                            <input type="password" id="userPwd" name="userPwd" style="width: 70%;" placeholder="기존의 비밀번호 입력">
-                                            <button type="button" class="change-btn" style="width: 110px;" onclick="passwordCheck()">비밀번호 변경</button>
+                                        <input type="password" id="userPwd" name="userPwd" style="width: 70%;" placeholder="기존의 비밀번호 입력">
+                                        <button type="button" class="change-btn" style="width: 110px;" onclick="passwordCheck()">비밀번호 변경</button>
                                     </td>
                                 </tr>
                             </table>
@@ -183,9 +183,6 @@
                                         <button type="button" class="change-btn" id="address-btn" onclick="change_address()">변경</button>
                                         <button type="button" class="change-btn" id="address-btn-cancel" style="display: none;" onclick="cancel_btn(this)">취소</button>
                                     </td>
-                                    <!-- <td>
-                                        <input type="hidden" id="address2" name="address2">
-                                    </td> -->
                                 </tr>
                             </table>
 

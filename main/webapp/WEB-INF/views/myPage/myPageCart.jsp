@@ -147,8 +147,8 @@
                                 <button onclick="selectProductRemove()">선택상품 삭제</button>
                             </div>
                             <div id="order-btn-area">
-                                <button onclick="selectProductOrder()">선택상품 주문</button>
-                                <button onclick="allProductOrder()">전체 주문</button>
+                                <!-- <button onclick="selectProductOrder()">선택상품 주문</button>
+                                <button onclick="allProductOrder()">전체 주문</button> -->
                             </div>
                         </div>
                     </div>

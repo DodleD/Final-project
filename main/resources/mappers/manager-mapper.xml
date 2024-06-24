@@ -373,7 +373,7 @@
 	
 	<!-- 판매자 신규신청 거부 -->
 	<update id="sellerNewApplicationReject">
-		DELETE FORM seller_info
+		DELETE FROM seller_info
 		WHERE user_no = #{userNo}
 	</update>
 

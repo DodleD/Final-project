@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       requestAnimationFrame(animateWaves);
   }
+  
   requestAnimationFrame(animateWaves);
 
   const show = document.querySelector(".show");

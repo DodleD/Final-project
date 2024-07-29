@@ -45,7 +45,6 @@ var playlist2 = 'OzGbT1jBQ84';
                     v2Th = item.snippet.channelTitle;
                     
                     output2 = '<h1>' + v2Title + '<br>' + '<h6>' +'by.' +  v2Th ;
-                    /*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/
                     $("#result2").append(output2);
                 })
             }
@@ -115,7 +114,7 @@ function anotherFish(data){
     let str ="";
     let Section = document.querySelector("#store-another-fish");
     for(const b of data){
-        const url = path + `/resources/image/${b.url}` //빽팁을 써야 스크립트에서는 변수라고 알아먹는다.
+        const url = path + `/resources/image/${b.url}` 
 
     str += `
                 <a href="fishDetail.fi?fishName=${b.fishName}">
@@ -125,11 +124,8 @@ function anotherFish(data){
                     </div>
                 </a>
             `;
-
-    
     }
     Section.innerHTML = str;
-    
 }
 
 

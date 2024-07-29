@@ -31,8 +31,7 @@ public class FishInfoController {
 	public String fishDetail(@RequestParam(value="fishName") String fishName, Model model) {
 		
 		Fish fish = fishService.fishDetail(fishName);		
-		
-		
+
 		model.addAttribute("fish", fish);
 		return "fishInfo/fishInfoDetail";
 	}
@@ -81,8 +80,6 @@ public class FishInfoController {
 		
 		ArrayList<Fish> list = fishService.ajaxSearchFish(pi ,fishName);
 		
-		
-		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("pi", pi);
 		map.put("list",list);
@@ -95,20 +92,16 @@ public class FishInfoController {
 	@PostMapping(value="categorySearch.fi")
 	public String ajaxCategorySearch(@RequestParam("cate") String cate,@RequestParam("cpage") String cpage) {
 		int currentPage = Integer.parseInt(cpage);
-	
 		int boardCount = fishService.selectcateCount(cate);
 		
 		PageInfo pi = Pagination.getPageInfo(boardCount, currentPage, 10, 15);
 		
 		ArrayList<Fish> list = fishService.ajaxCategorySearch(pi ,cate);
-		
-	
-		
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("pi", pi);
 		map.put("list",list);
 
-		
 		return new Gson().toJson(map);
 	}
 	

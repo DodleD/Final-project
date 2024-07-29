@@ -62,10 +62,6 @@ function sendAlarmData(data,sellerNo){
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log("sendAlarmData에서 에러")
-                // console.log(`Failed to send data for ${element}.`);
-                // console.log("Status: " + textStatus);
-                // console.log("Error: " + errorThrown);
-                // console.log("Response Text: " + jqXHR.responseText);
             },
             complete: function() {
                 $('#loading_spinner').hide();

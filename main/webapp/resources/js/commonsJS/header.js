@@ -94,7 +94,7 @@ async function requestNotificationPermission() {
 function notification(userNo) {
   const eventSource = new EventSource(`http://localhost:8888/psvm/notifications/subscribe.pr/${userNo}`);
   eventSource.addEventListener('sse', event => {
-      (async () => {
+      
           const data = event.data; // Assuming event.data is a JSON string
           const showNotification = () => {
               const notification = new Notification('새로운 알림 도착', {
@@ -105,7 +105,6 @@ function notification(userNo) {
                   notification.close();
               }, 10 * 1000);
 
-
               // 클릭 시 알람보낸 스토어페이지로 이동
               notification.addEventListener('click', () => {
                   window.open(data, '_blank');
@@ -114,13 +113,8 @@ function notification(userNo) {
 
           if (Notification.permission === 'granted') {
               showNotification();
-          } else if (Notification.permission !== 'denied') {
-              let permission = await Notification.requestPermission();
-              if (permission === 'granted') {
-                  showNotification();
-              }
           }
-      })();
+   
   });
 }
 
@@ -143,7 +137,6 @@ function getAlarmList(userNo, callback){
 
 //alarmCheck가 하나라도 false이면 빨간 종모양으로 변경 and for문 중지
 function drawNotification(alarmList){
-  //알람 버튼 빨간 점 띄울지 말지
   const nDiv = document.getElementById("notifi-bell");
   let str = "";
   for(const i of alarmList){
@@ -151,7 +144,6 @@ function drawNotification(alarmList){
       sDiv = "";
       str = `<img id="notification-img" style="margin-top: 0;" src="${path}/resources/image/notification-new.png" onclick="onNotification()" alt="">`
       nDiv.innerHTML = str;
-
       break;
     }
   }

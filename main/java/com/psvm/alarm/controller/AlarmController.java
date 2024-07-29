@@ -27,7 +27,6 @@ public class AlarmController {
 	public String getAlarmList(@RequestParam("userNo") int userNo) {
 		ArrayList<String> list = alarmService.getAlarmList(userNo);
 
-		System.out.println(userNo);
 		return new Gson().toJson(list);
 	}
 	
@@ -85,7 +84,7 @@ public class AlarmController {
 		} else {
 			String error = "알람 보내기에 실패하였습니다.";
 			ajaxMap.put("error", error);
-			return new Gson().toJson(ajaxMap);
+			return new Gson().toJson(null);
 		}
 		
 	}	

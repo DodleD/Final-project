@@ -119,10 +119,6 @@ function categorySearch(data, callback) {
 
 }
 
-function categoryE(ths) {
-    var cate = $(ths).text();
-    contentsFunction(1, cate);
-}
 
 // 그려주는 함수
 function drawList(data, key) {
